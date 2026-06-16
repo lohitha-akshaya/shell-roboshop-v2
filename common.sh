@@ -83,3 +83,14 @@ restart_service(){
     systemctl restart $app_name &>>$LOG_FILE
     VALIDATE $? "Restarting $app_name service"
 }
+
+java_setup(){
+    dnf install maven -y &>>$LOG_FILE
+    VALIDATE $? "Installing Maven"
+}
+python_setup(){
+    dnf install python3 gcc python3-devel -y &>>$LOG_FILE
+    VALIDATE $? "Installing Python"
+    pip3 install -r requirements.txt  &>>$LOG_FILE
+    VALIDATE $? "Installing dependencies" 
+}
