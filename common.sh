@@ -12,6 +12,8 @@ B="\e[34m"
 N="\e[0m"
 TIMESTAMP=$(date "+%Y-%m-%d +%H:%M:%S")
 
+echo -e "$TIMESTAMP [INFO] Script execution started"
+
 #root access
 USERID=$(id -u)
 
@@ -31,3 +33,8 @@ VALIDATE() {
     fi
 
 }
+
+print_total_time(){
+    echo -e "$TIMESTAMP[INFO] Script executed in $G $SECONDS $N seconds"
+}
+     
