@@ -11,13 +11,13 @@ systemd_setup
 cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Added Mongo repo" 
 
-dnf install mongodb-mongosh -y &>>$LOGS_FILE
+dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Installed MongoDB client"
 
 INDEX=$(mongosh --host mongodb.lohithadev.online --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
 
 if [ $INDEX -lt 0 ]; then
-    mongosh --host mongodb.lohithadev.online </app/db/master-data.js &>>$LOGS_FILE
+    mongosh --host mongodb.lohithadev.online </app/db/master-data.js &>>$LOG_FILE
     VALIDATE $? "Load Products"
 else
     echo -e "Products already loaded ... $Y SKIPPING $N"
