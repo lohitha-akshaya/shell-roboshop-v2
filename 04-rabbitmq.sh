@@ -5,7 +5,7 @@ check_root
 cp rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo
 VALIDATE $? "Adding rabbitmq repo"
 
-dnf install rabbitmq-server -y &>> $LOGS_FILE
+dnf install rabbitmq-server -y 
 VALIDATE $? "Installing rabbitmq server"
 
 systemctl enable rabbitmq-server &>> $LOGS_FILE
