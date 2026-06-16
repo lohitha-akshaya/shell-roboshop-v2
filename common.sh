@@ -1,4 +1,4 @@
-#!/bib/bash
+#!/bin/bash
 LOGS_FOLDER="/var/log/roboshop"
 sudo mkdir -p $LOGS_FOLDER
 sudo chown -R ec2-user:ec2-user $LOGS_FOLDER
