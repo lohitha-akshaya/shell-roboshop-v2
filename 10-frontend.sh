@@ -3,7 +3,6 @@
 app_name=frontend
 source ./common.sh
 check_root
-app_setup
 
 dnf module disable nginx -y &>> $LOG_FILE
 dnf module enable nginx:1.24 -y &>> $LOG_FILE
