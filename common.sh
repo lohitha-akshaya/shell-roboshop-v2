@@ -17,7 +17,7 @@ echo -e "$TIMESTAMP [INFO] Script execution started"
 #root access
 USERID=$(id -u)
 
-check_root() {
+check_root(){
     if [ $USERID -ne 0 ]; then
         echo -e " $TIMESTAMP [ERROR]you are $B not $N $R root user $N,please run script with $R sudo $N or $R root $N access"
         exit 1
@@ -34,14 +34,14 @@ VALIDATE() {
 
 }
 
-print_total_time() {
+print_total_time(){
     echo -e "$TIMESTAMP[INFO] Script executed in $G $SECONDS $N seconds"
 }
 
 app_setup(){
-        id roboshop &>>$LOGS_FILE
+        id roboshop &>>$LOG_FILE
     if [ $? -ne 0 ]; then
-        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOGS_FILE
+        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
         VALIDATE $? "Creating roboshop system user"
     else
         echo -e "System user roboshop already created ... $Y SKIPPING $N"
@@ -53,32 +53,32 @@ app_setup(){
     rm -rf /tmp/$app_name.zip
     VALIDATE $? "Removed $app_name zip"
 
-    mkdir -p /app  &>>$LOGS_FILE
+    mkdir -p /app  &>>$LOG_FILE
     VALIDATE $? "Creating app directory"
 
-    curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip  &>>$LOGS_FILE
+    curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip  &>>$LOG_FILE
     cd /app 
-    unzip /tmp/$app_name.zip &>>$LOGS_FILE
+    unzip /tmp/$app_name.zip &>>$LOG_FILE
     VALIDATE $? "Downloaded and extracted $app_name code"
 }  
 nodejs_setup(){
-    dnf module disable nodejs -y &>>$LOGS_FILE
-    dnf module enable nodejs:20 -y  &>>$LOGS_FILE
-    dnf install nodejs -y &>>$LOGS_FILE
+    dnf module disable nodejs -y &>>$LOG_FILE
+    dnf module enable nodejs:20 -y  &>>$LOG_FILE
+    dnf install nodejs -y &>>$LOG_FILE
     VALIDATE $? "Installing NodeJS:20"
 
 
-    npm install  &>>$LOGS_FILE
+    npm install  &>>$LOG_FILE
     VALIDATE $? "Installing dependencies"
 }  
 systemd_setup(){
     cp $SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service
     VALIDATE $? "Created systemctl service"
-    systemctl deamon-reload &>>$LOGS_FILE
-    systemctl enable $app_name &>>$LOGS_FILE
+    systemctl deamon-reload &>>$LOG_FILE
+    systemctl enable $app_name &>>$LOG_FILE
     VALIDATE $? "Enabling $app_name service"
 }
 restart_service(){
-    systemctl restart $app_name &>>$LOGS_FILE
+    systemctl restart $app_name &>>$LOG_FILE
     VALIDATE $? "Restarting $app_name service"
 }
