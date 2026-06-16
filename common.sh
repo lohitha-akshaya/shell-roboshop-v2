@@ -17,7 +17,7 @@ echo -e "$TIMESTAMP [INFO] Script execution started"
 #root access
 USERID=$(id -u)
 
-check_root(){
+check_root() {
     if [ $USERID -ne 0 ]; then
         echo -e " $TIMESTAMP [ERROR]you are $B not $N $R root user $N,please run script with $R sudo $N or $R root $N access"
         exit 1
@@ -34,7 +34,7 @@ VALIDATE() {
 
 }
 
-print_total_time(){
+print_total_time() {
     echo -e "$TIMESTAMP[INFO] Script executed in $G $SECONDS $N seconds"
 }
      
