@@ -16,5 +16,3 @@ do
     a=$b
     b=$c
 done
-
-echo
