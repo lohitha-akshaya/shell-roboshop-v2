@@ -1,15 +1,9 @@
 #!/bin/bash
-
-echo "Enter a number:"
-read n
-echo "enter second number:"
-read m
-
-
-for (( i=n; i<=m; i++ ))
+max=$1
+for i in "$@"
 do 
-  if [ $(( i % 2 )) -eq 1 ]; then 
-       
-    echo "$i"
-  fi
+   if [ $i -gt $max ]; then
+        max=$i
+   fi
 done
+echo "maximum number is : $max"
