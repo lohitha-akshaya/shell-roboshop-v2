@@ -1,17 +1,27 @@
 #!/bin/bash
-echo "enter a number:"
-read n
-flag=1
+
+echo "Enter a number:"
+read num
+
 i=2
-while [ $i -lt $(($n/2)) ]
-do 
-   if [ $n % $i == 0 ]; then
-      flag=0
-      break
-   fi
-done 
-if [ $flag -eq 1 ]; then
-   echo "$n is a prime number"
+flag=0
+
+while [ $i -lt $num ]
+do
+    if [ $((num % i)) -eq 0 ]
+    then
+        flag=1
+        break
+    fi
+    i=$((i + 1))
+done
+
+if [ $num -le 1 ]
+then
+    echo "$num is not a Prime Number"
+elif [ $flag -eq 0 ]
+then
+    echo "$num is a Prime Number"
 else
-   echo "$n is not a prime number"
+    echo "$num is not a Prime Number"
 fi
