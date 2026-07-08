@@ -1,11 +1,18 @@
 #!/bin/bash
 echo "enter a number :"
 read n
-rno=0
-while [ "$n" -ne 0 ]
+temp=$n
+sum=0
+while [ "$temp" -ne 0 ]
 do 
-    d=$(( $n % 10 ))
-    rno=$(( $rno * 10 + $d ))
-    n=$(( $n / 10 ))
+    d=$(( $temp % 10 ))
+    c=$(( $d * $d * $d ))
+    sum=$(( $sum + $c ))
+    temp=$(( $temp / 10 ))
 done
-echo "reverse number is : $rno"
+if [ "$sum" -eq "$n" ]
+then
+    echo "$n is an armstrong number"
+else
+    echo "$n is not an armstrong number"
+fi
