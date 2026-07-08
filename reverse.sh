@@ -3,9 +3,9 @@ echo "enter a number:"
 read n
 flag=1
 i=2
-while [ $i <= n/2 ]
+while [ $i < = n/2 ]
 do 
-   if [ n % i== 0]; then
+   if [ n % i == 0]; then
       flag=0
       break
    fi
