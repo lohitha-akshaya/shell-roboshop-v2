@@ -1,18 +1,13 @@
 #!/bin/bash
-echo "enter a number :"
+
+echo "Enter a number:"
 read n
-temp=$n
-sum=0
-while [ "$temp" -ne 0 ]
-do 
-    d=$(( $temp % 10 ))
-    c=$(( $d * $d * $d ))
-    sum=$(( $sum + $c ))
-    temp=$(( $temp / 10 ))
+
+fact=1
+
+for (( i=1; i<=n; i++ ))
+do
+    fact=$((fact * i))
 done
-if [ "$sum" -eq "$n" ]
-then
-    echo "$n is an armstrong number"
-else
-    echo "$n is not an armstrong number"
-fi
+
+echo "Factorial of $n is: $fact"
