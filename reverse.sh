@@ -1,27 +1,20 @@
 #!/bin/bash
 
-echo "Enter a number:"
-read num
+echo "Enter the number of terms:"
+read n
 
-i=2
-flag=0
+a=0
+b=1
 
-while [ $i -lt $num ]
+echo "Fibonacci Series:"
+
+for (( i=1; i<=n; i++ ))
 do
-    if [ $((num % i)) -eq 0 ]
-    then
-        flag=1
-        break
-    fi
-    i=$((i + 1))
+    echo -n "$a "
+
+    c=$((a + b))
+    a=$b
+    b=$c
 done
 
-if [ $num -le 1 ]
-then
-    echo "$num is not a Prime Number"
-elif [ $flag -eq 0 ]
-then
-    echo "$num is a Prime Number"
-else
-    echo "$num is not a Prime Number"
-fi
+echo
