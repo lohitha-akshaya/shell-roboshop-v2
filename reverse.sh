@@ -7,6 +7,8 @@ read m
 
 
 for (( i=n; i<=m; i++ ))
-do
+do 
+  if [ $(( i % 2 )) -eq 0 ]; then 
+       
     echo "$i"
 done
