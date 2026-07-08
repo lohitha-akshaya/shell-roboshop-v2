@@ -3,7 +3,7 @@ echo "enter a number:"
 read n
 flag=1
 i=2
-while [ $i <= $n / 2 ]
+while [ $i -le $n ]
 do 
    if [ $n % $i == 0 ]; then
       flag=0
